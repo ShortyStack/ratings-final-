@@ -1,0 +1,124 @@
+NOTES 
+
+START FLASK APP 
+1. virtualenv env
+2. source env/bin/activate
+3. pip install -r requirements.txt
+4. subl .gitirnore 
+    --add env and pyc 
+
+DB          py 
+table --> class 
+col --> attribute 
+row --> instance 
+
+
+MVC--> MODEL VIEW CONTROLLER 
+server--> controller/routes 
+model --> Alchamy --> DB 
+seed --> database 
+
+u.items = Movie talbe 
+
+Movie table:
+movie id | movie title | release date | video release date |
+IMDb URL | unknown | Action | Adventure | Animation |
+Children's | Comedy | Crime | Documentary | Drama | Fantasy |
+Film-Noir | Horror | Musical | Mystery | Romance | Sci-Fi |
+Thriller | War | Western |
+
+
+u.data == RATINGS 
+RATINGING TABLE:
+user_id \t movie_id \t score \t timestamp.
+
+u.user == USER 
+
+USER TABLE 
+user id | age | gender | occupation | zip code
+
+
+
+eXAMPLE OF DB --> data model 
+Model
+
+User
+
+Name    Type
+user_id integer, primary key
+email   optional string
+password    optional string
+age optional integer
+zipcode optional string (technically, these aren’t numeric)
+Movie
+
+Name    Type
+movie_id    integer, primary key
+title   string
+released_at datetime
+imdb_url    string
+
+Rating
+Name    Type
+rating_id   integer, primary key
+movie_id    integer
+user_id integer
+score   integer
+
+Relationships
+A user has many ratings
+A rating belongs to a user
+A movie has many ratings
+A rating belongs to a movie
+A user has many movies through ratings
+A movie has many users through ratings
+
+TO ACTIAVTE DB or RUN DB 
+in the env in terminal enter 
+python -i model.py
+db.create_all()
+
+
+IN SECOND TAB - (Not server)
+start SQL following command 
+sqlite3 db name 
+
+
+TO CREATE lables for DB 
+.mode columns
+.header on 
+.tables 
+
+
+
+HOW TO CREATE TABLES IN DB quit sqlite3 and quit env 
+--then build model with tables once your done actiavte env and create db 
+
+ONCE you created all your tables in Model 
+start env in one tab 
+source env/bin/activate 
+python i model.py
+db.create_all() # creates db 
+
+THEN IN ANOTHER WINDOW get into env 
+soruce env/bin/actiavte 
+ls find the db file 
+then check schemas 
+
+Testing the Query
+For this part we created fake users. 
+
+user@nuc02:~/src/ratings$ source env/bin/activate
+(env)user@nuc02:~/src/ratings$ python -i model.py
+Connected to DB.
+>>> jessica = User.query.get(1)
+>>> print jessica.email
+jessica@gmail.com
+>>> uma = User.query.get(2) #Get user by ID[2] in the users table and assign "Uma" to ID[2]
+>>> print uma.email # Print email associated with "Uma"
+uma@gmail.com
+>>> 
+
+
+SQL ALCHEMY:
+#.get() works on primary keys

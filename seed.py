@@ -1,5 +1,5 @@
 """Utility file to seed ratings database from MovieLens data in seed_data/"""
-
+#seed.py populates the tables. 
 
 from model import User
 from model import Rating
@@ -9,6 +9,8 @@ from model import connect_to_db, db
 from server import app
 
 from datetime import datetime 
+
+
 
 
 def load_users():
@@ -52,6 +54,9 @@ def load_movies():
         #row = row.strip()
         #splitting by the ('|')
         movie_id, title, released_at, imdb_url = row.split("|")[:4]
+
+        title = title[:-7]
+
         if released_at == "":
             released_at = None
         else:
@@ -105,6 +110,6 @@ if __name__ == "__main__":
     db.create_all()
 
     # Import different types of data
-    load_users()
+    # load_users()
     load_movies()
-    load_ratings()
+    # load_ratings()
