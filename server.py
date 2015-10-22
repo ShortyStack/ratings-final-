@@ -33,15 +33,32 @@ def user_list():
     users = User.query.all()
     return render_template("user_list.html", users=users)
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login_page():
     """Users login here"""
+    if request.method == 'GET':
+        # displaying the log in form from the GET request 
+        flash("messages")
+        return render_template("login_form.html")
 
-    return render_template()
+    else: 
+        email = request.form.get('email')
+        password = request.form.get('password')
+        email = User.query.filter_by(email=email, password=password).first()
+        if request.form['email'] != 'email' or \
+            request.form['password'] != 'password':
+            flash("Invalid email and password")
+            return render_template("login_form.html")
+
+        else:
+            flash("You were successfully logged in")
+            return redirect('/homepage')
 
 
 
-    new_user = User(username=username, password=password)
+
+    # this is for sign up form how to create a new user into the DB 
+    #new_user = User(username=username, password=password)
 
 
 if __name__ == "__main__":

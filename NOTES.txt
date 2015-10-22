@@ -122,3 +122,6 @@ uma@gmail.com
 
 SQL ALCHEMY:
 #.get() works on primary keys
+
+
+https://gist.github.com/BerraDev/a633ff4dfbc7309f3bc2
