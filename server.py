@@ -33,6 +33,16 @@ def user_list():
     users = User.query.all()
     return render_template("user_list.html", users=users)
 
+@app.route('/login')
+def login_page():
+    """Users login here"""
+
+    return render_template()
+
+
+
+    new_user = User(username=username, password=password)
+
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
